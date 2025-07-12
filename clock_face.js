@@ -18,14 +18,13 @@ class Clock {
   }
 
   drawHands(ang1, ang2) {
+    stroke(0);
     strokeWeight(this.r / 10);
     let x1 = this.x + cos(ang1) * this.r;
     let y1 = this.y + sin(ang1) * this.r;
     let x2 = this.x + cos(ang2) * this.r;
     let y2 = this.y + sin(ang2) * this.r;
-    stroke("red");
     line(this.x, this.y, x1, y1);
-    stroke("blue");
     line(this.x, this.y, x2, y2);
   }
 }

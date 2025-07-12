@@ -28,7 +28,7 @@ let noise_radius = 2;
 let noise_speed = 0.01;
 let speed = 0;
 function draw() {
-  background(200);
+  background(255);
   speed = slider.value() / 1000;
   switch (myRadio.value()) {
     case "perlin":
@@ -61,7 +61,7 @@ function draw() {
     case "square":
       for (let i = 0; i < ROWS; i++) {
         for (let j = 0; j < COLS; j++) {
-          let rot_pos = 2 * PI * sin(frameCount * speed);
+          let rot_pos = PI * frameCount * speed;
           if ((i + j) % 2 === 0) {
             rot_pos = -rot_pos;
           }
