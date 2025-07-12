@@ -5,34 +5,36 @@ let CLOCK_SPACING = 50; // Spacing between clocks in pixels
 
 let clockwall;
 let myRadio;
+let slider;
 
 function setup() {
   setFrameRate(30);
   angleMode(RADIANS);
   createCanvas(COLS * 50, ROWS * 50);
   clockwall = new ClockWall(ROWS, COLS, CLOCK_SIZE, CLOCK_SPACING);
-  // checkbox = createCheckbox(' Perlin', true);
+
   myRadio = createRadio();
-  // myRadio.position(0, 0);
-  // myRadio.size(50);
   myRadio.option("perlin");
   myRadio.option("sin");
   myRadio.option("square");
-
   myRadio.selected("square");
+
+  createP("Speed:");
+  slider = createSlider(0, 255);
 }
 
 let noise_dist = 5;
 let noise_radius = 2;
 let noise_speed = 0.01;
-let speed = 0.02;
+let speed = 0;
 function draw() {
   background(200);
+  speed = slider.value() / 1000;
   switch (myRadio.value()) {
     case "perlin":
       let x,
         y = 0;
-      let t = frameCount * noise_speed;
+      let t = frameCount * speed;
       for (let i = 0; i < ROWS; i++) {
         for (let j = 0; j < COLS; j++) {
           x = i + noise_radius * cos(t);
