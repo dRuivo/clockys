@@ -16,8 +16,8 @@ function draw() {
   background(200);
   for (let i = 0; i < ROWS; i++) {
     for (let j = 0; j < COLS; j++) {
-      let ang1 = map(i, 0, ROWS - 1, 0, TWO_PI);
-      let ang2 = map(j, 0, COLS - 1, 0, TWO_PI);
+      let ang1 = PI * cos((0.5 * frameCount + i / 2) * 0.1);
+      let ang2 = PI * sin((0.5 * frameCount + j) * 0.1);
       clockwall.setFace(i, j, ang1, ang2);
     }
   }
