@@ -99,7 +99,7 @@ function draw() {
         for (let j = 0; j < COLS; j++) {
           let ang1 =
             (2 * PI * (seconds + milliseconds / 1000)) / 60 +
-            (j * PI) / 16 +
+            ((j - 7.5) * PI) / 16 +
             (i * PI) / 8;
           let ang2 = ang1 + PI;
           if (i > 0 && i < 7 && j > 0 && j < 4) {
