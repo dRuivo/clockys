@@ -17,8 +17,9 @@ function setup() {
   // myRadio.size(50);
   myRadio.option("perlin");
   myRadio.option("sin");
+  myRadio.option("square");
 
-  myRadio.selected("sin");
+  myRadio.selected("square");
 }
 
 let noise_dist = 5;
@@ -51,6 +52,19 @@ function draw() {
         for (let j = 0; j < COLS; j++) {
           let ang1 = PI * sin((frameCount + 5 * j) * speed);
           let ang2 = PI * cos((frameCount + 5 * i) * speed);
+          clockwall.setFace(i, j, ang1, ang2);
+        }
+      }
+      break;
+    case "square":
+      for (let i = 0; i < ROWS; i++) {
+        for (let j = 0; j < COLS; j++) {
+          let rot_pos = 2 * PI * sin(frameCount * speed);
+          if ((i + j) % 2 === 0) {
+            rot_pos = -rot_pos;
+          }
+          let ang1 = (j % 2) * PI + rot_pos;
+          let ang2 = PI / 2 + (i % 2) * PI - rot_pos;
           clockwall.setFace(i, j, ang1, ang2);
         }
       }
