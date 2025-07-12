@@ -158,7 +158,16 @@ function draw() {
           clockwall.setFace(i, j, ang1, ang2);
         }
       }
-    //   break;
+      break;
+    case "wave":
+      for (let i = 0; i < ROWS; i++) {
+        for (let j = 0; j < COLS; j++) {
+          let ang1 = (PI * frameCount * speed) / 2 + (j * PI) / 16;
+          let ang2 = ang1 + PI;
+          clockwall.setFace(i, j, ang1, ang2);
+        }
+      }
+      break;
   }
   clockwall.display();
 }
