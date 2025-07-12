@@ -1,0 +1,67 @@
+// Clock class with dials
+class Clock {
+  constructor(x, y, d) {
+    this.x = x;
+    this.y = y;
+    this.r = d / 2;
+  }
+
+  display(ang1 = 0, ang2 = PI) {
+    stroke(0);
+    strokeWeight(this.r / 20);
+    noFill();
+    ellipse(this.x, this.y, this.r * 2, this.r * 2);
+    this.drawHands(ang1, ang2);
+  }
+
+  drawHands(ang1, ang2) {
+    stroke(0);
+    strokeWeight(this.r / 10);
+    let x1 = this.x + cos(ang1) * this.r;
+    let y1 = this.y + sin(ang1) * this.r;
+    let x2 = this.x + cos(ang2) * this.r;
+    let y2 = this.y + sin(ang2) * this.r;
+    line(this.x, this.y, x1, y1);
+    line(this.x, this.y, x2, y2);
+  }
+}
+
+class ClockWall {
+  constructor(rows, cols, clockSize, clockSpacing) {
+    this.rows = rows;
+    this.cols = cols;
+    this.clockSize = clockSize;
+    this.clockSpacing = clockSpacing;
+    this.clocks = [];
+    this.handsAngles = []; // Store angles for each clock hand
+
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        this.clocks.push(
+          new Clock(
+            (j + 0.5) * clockSpacing,
+            (i + 0.5) * clockSpacing,
+            clockSize
+          )
+        );
+        this.handsAngles.push([0, 0]); // Initialize angles for each clock
+      }
+    }
+  }
+
+  setFace(i, j, ang1, ang2) {
+    let index = i * this.cols + j;
+    if (index < this.handsAngles.length) {
+      this.handsAngles[index][0] = ang1;
+      this.handsAngles[index][1] = ang2;
+    }
+  }
+
+  display() {
+    for (let i = 0; i < this.clocks.length; i++) {
+      let ang1 = this.handsAngles[i][0];
+      let ang2 = this.handsAngles[i][1];
+      this.clocks[i].display(ang1, ang2);
+    }
+  }
+}
