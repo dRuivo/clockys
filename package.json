@@ -1,0 +1,11 @@
+{
+  "name": "clockys",
+  "version": "0.0.1",
+  "description": "A clock face project using Three.js and Vite",
+  "dependencies": {
+    "three": "^0.178.0"
+  },
+  "devDependencies": {
+    "vite": "^7.0.5"
+  }
+}
